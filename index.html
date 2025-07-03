@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dowód osobisty – czarnyvkie</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .card { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    img { max-width: 100%; border-radius: 5px; }
+    h2 { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h2>Dowód osobisty</h2>
+    <img id="photo" src="" alt="Zdjęcie">
+    <p><strong>Imię:</strong> <span id="name"></span></p>
+    <p><strong>Nazwisko:</strong> <span id="surname"></span></p>
+    <p><strong>Data urodzenia:</strong> <span id="birthday"></span></p>
+    <p><strong>Narodowość:</strong> <span id="nationality"></span></p>
+    <p><strong>Miejsce urodzenia:</strong> <span id="birthplace"></span></p>
+    <p><strong>Adres:</strong> <span id="address"></span></p>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('photo').src = params.get('image') || '';
+    document.getElementById('name').textContent = params.get('name') || '-';
+    document.getElementById('surname').textContent = params.get('surname') || '-';
+    document.getElementById('birthday').textContent = params.get('birthday') || '-';
+    document.getElementById('nationality').textContent = params.get('nationality') || '-';
+    document.getElementById('birthplace').textContent = params.get('birthPlace') || '-';
+    const adr = [params.get('address1'), params.get('address2'), params.get('city')].filter(x=>x).join(', ');
+    document.getElementById('address').textContent = adr;
+  </script>
+</body>
+</html>
